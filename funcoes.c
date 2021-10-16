@@ -44,7 +44,7 @@ void iniciarTempo(Analise* a){
 void finalizarTempo(Analise* a){
     a->tempoFinal = clock();
     
-    a->deltaTempo = (a->tempoFinal - a->tempoInicial)*1000.0/CLOCKS_PER_SEC;
+    a->deltaTempo = (double)(a->tempoFinal - a->tempoInicial) / CLOCKS_PER_SEC;
 }
 
 double getDeltaTempo(Analise* a){

@@ -1,37 +1,41 @@
 #include "funcoes.h"
 #include "ordenacao.h"
 
+#define TAMANHO_VETOR 1000000
+
 int main(){
     Analise a;
     iniciarTempo(&a);
 
     srand(time(NULL)); // seed aleatória
 
-    int* teste = criaVetorAleatorio(100);
-    imprimeVetor(teste, 100);
-
+    int* teste = criaVetorAleatorio(TAMANHO_VETOR);
+    printf("Vetor teste:\n");
+    //imprimeVetor(teste, TAMANHO_VETOR);
     printf("\n");
-    int* teste2 = clonaVetor(teste, 100);
-    imprimeVetor(teste2, 100);
 
-    printf("depois da alteracao:\n\n");
-    teste[0] = 99999;
-    imprimeVetor(teste, 100);
-    printf("\n");
-    imprimeVetor(teste2, 100);
+    //int* teste2 = clonaVetor(teste, TAMANHO_VETOR);
+    //printf("Vetor teste 2:\n");
+    //imprimeVetor(teste2, TAMANHO_VETOR);
+    //printf("\n");
+
+    printf("Aplicando o InsertionSort em teste.\n");
+    insertionSort(teste, TAMANHO_VETOR);
+    //imprimeVetor(teste, TAMANHO_VETOR);
+
+    //printf("\nAplicando o MergeSort em teste 2.\n");
+    //mergeSort(teste2, 0, TAMANHO_VETOR-1);
+    //imprimeVetor(teste2, TAMANHO_VETOR);
 
     free(teste);
-    free(teste2);
-
-    while(1){
-        if(getchar())
-            break;
-    }
+    //free(teste2);
 
     finalizarTempo(&a);
     double tempo = getDeltaTempo(&a);
-    printf("tempo em ms: %lf\n", tempo);
-    printf("tempo em s: %lf\n", tempo/1000);
+    printf("\ntempo em milisegundos: %lf\n", tempo*1000);
+    printf("tempo em segundos: %lf\n", tempo);
+    printf("tempo em minutos: %lf\n", tempo/60);
+    printf("tempo em horas: %lf\n", tempo/3600);
 
     return 0;
 }
