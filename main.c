@@ -1,7 +1,7 @@
 #include "funcoes.h"
 #include "ordenacao.h"
 
-#define TAMANHO_VETOR 1000000
+#define TAMANHO_VETOR 10
 
 int main(){
     Analise a;
@@ -11,7 +11,7 @@ int main(){
 
     int* teste = criaVetorAleatorio(TAMANHO_VETOR);
     printf("Vetor teste:\n");
-    //imprimeVetor(teste, TAMANHO_VETOR);
+    imprimeVetor(teste, TAMANHO_VETOR);
     printf("\n");
 
     //int* teste2 = clonaVetor(teste, TAMANHO_VETOR);
@@ -19,13 +19,19 @@ int main(){
     //imprimeVetor(teste2, TAMANHO_VETOR);
     //printf("\n");
 
-    printf("Aplicando o InsertionSort em teste.\n");
-    insertionSort(teste, TAMANHO_VETOR);
+    //printf("Aplicando o InsertionSort em teste.\n");
+    //insertionSort(teste, TAMANHO_VETOR);
     //imprimeVetor(teste, TAMANHO_VETOR);
 
     //printf("\nAplicando o MergeSort em teste 2.\n");
     //mergeSort(teste2, 0, TAMANHO_VETOR-1);
     //imprimeVetor(teste2, TAMANHO_VETOR);
+
+    
+    printf("Aplicando o RadixSort em teste.\n");
+    radixSort(teste, TAMANHO_VETOR);
+    imprimeVetor(teste, TAMANHO_VETOR);
+    
 
     free(teste);
     //free(teste2);

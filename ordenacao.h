@@ -12,5 +12,6 @@ void mergeSort(int* v, int comeco, int fim);
 void merge(int* v, int comeco, int meio, int fim);
 
 // RadixSort
+void radixSort(int* v, int n);
 
 #endif

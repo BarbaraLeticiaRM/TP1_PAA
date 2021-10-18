@@ -70,3 +70,34 @@ void merge(int* v, int comeco, int meio, int fim) {
     
     free(vAux);
 }
+
+//Realiza o Radixsort com o vetor v de tamanho n
+void radixSort(int* v, int n) {
+    int i;
+    int *b;
+    int maior = v[0];
+    int exp = 1;
+
+    b = malloc(n * sizeof(int));
+
+    for (i = 0; i < n; i++) {
+        if (v[i] > maior)
+    	    maior = v[i];
+    }
+
+    while (maior/exp > 0) {
+        int bucket[10] = { 0 };
+    	for (i = 0; i < n; i++)
+    	    bucket[(v[i] / exp) % 10]++;
+    	for (i = 1; i < 10; i++)
+    	    bucket[i] += bucket[i - 1];
+    	for (i = n - 1; i >= 0; i--)
+    	    b[--bucket[(v[i] / exp) % 10]] = v[i];
+    	for (i = 0; i < n; i++)
+    	    v[i] = b[i];
+    	exp *= 10;
+    }
+
+    free(b);
+}
+
