@@ -85,13 +85,16 @@ double calculaDesvioPadrao(double* v, int n){
 void testeEstatisticoT(double* v, int n, double T, int* resultado, double* limite1, double* limite2){
     double media = calculaMedia(v, n);
     double desvioPadrao = calculaDesvioPadrao(v, n);
-    *limite1 = (media - T) / (desvioPadrao / sqrt(n));
-    *limite2 = (media + T) / (desvioPadrao / sqrt(n));
+    *limite1 = media - T * (desvioPadrao / sqrt(n));
+    *limite2 = media + T * (desvioPadrao / sqrt(n));
 
-    // Não há diferença estatística entre os dois vetores
-    if(*limite1 <= 0 && 0 <= *limite2)
+    // Não há diferença estatística
+    if(*limite1 <= 0 && *limite2 > 0)
         *resultado = 0;
-    // Há diferença estatística entre os dois vetores
+    // Há diferença estatística, caso o teste for pareado, o primeiro vetor tem pior desempenho
+    else if(*limite1 > 0 && *limite2 > 0)
+        *resultado = -1;
+    // Há diferença estatística, caso o teste for pareado, o primeiro vetor tem melhor desempenho
     else
         *resultado = 1;
 }
